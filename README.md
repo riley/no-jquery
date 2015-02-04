@@ -119,7 +119,7 @@ $('#february-28').after('<div id="leap-day"></div>');
 ```
 DOM API
 ```javascript
-// uh oh.
+// ooh.
 document.getElementById('february-28').insertAdjacentHTML('afterend', '<div id="leap-day"></div>');
 ```
 
