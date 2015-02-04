@@ -102,33 +102,125 @@ DOM API `document.createElement('div')`
 #### Inserting Elements Before & After
 let's say we start with a list, and we want to add an element in the middle
 ```javascript
-<div id="february-28"></div>
-<div id="march-1"></div>
-<div id="march-2"></div>
+<div id="beta"></div>
+<div id="launch"></div>
+<div id="patch"></div>
 ```
 and we want to insert some content between the first and second divs, giving this:
 ```javascript
-<div id="february-28"></div>
-<div id="leap-day"></div>
-<div id="march-1"></div>
-<div id="march-2"></div>
+<div id="beta"></div>
+<div id="rewrite"></div>
+<div id="launch"></div>
+<div id="patch"></div>
 ```
 jQuery
 ```javascript
-$('#february-28').after('<div id="leap-day"></div>');
+$('#beta').after('<div id="rewrite"></div>');
 ```
 DOM API
 ```javascript
 // ooh.
-document.getElementById('february-28').insertAdjacentHTML('afterend', '<div id="leap-day"></div>');
+document.getElementById('beta').insertAdjacentHTML('afterend', '<div id="rewrite"></div>');
 ```
 
+or maybe we want to insert something at the beginning, before all the selected elements, creating this:
+```javascript
+<div id="alpha"></div>
+<div id="beta"></div>
+<div id="launch"></div>
+<div id="patch"></div>
+```
+jQuery
+```javascript
+$('#beta').before('<div id="alpha"></div>');
+```
+DOM API
+```javascript
+// does this look familiar?
+document.getElementById('beta').insertAdjacentHTML('beforestart', '<div id="alpha"></div>');
+```
+#### Inserting elements as children
+Given:
+```javascript
+<div id="diana">
+    <div id="william"></div>
+</div>
+```
+and we want to create a new element and make it the first child of the parent
+```javascript
+<div id="diana">
+    <div id="harry"></div>
+    <div id="william"></div>
+</div>
+```
+jQuery
+```javascript
+$('#diana').prepend('<div id="harry"></div>');
+```
 
-
-
-
-
-
-
-
-
+DOM API
+```javascript
+document.getElementById('diana').insertAdjacentHTML('afterbegin', '<div id="harry"></div>');```
+or create the element and put it at the end:
+```javascript
+<div id="diana">
+    <div id="william"></div>
+    <div id="harry"></div>
+</div>
+```
+jQuery
+```javascript
+$('#diana').append('<div id="harry"></div>');
+```
+DOM API
+```javascript
+document.getElementById('diana').insertAdjacentHTML('beforeend', '<div id="harry"></div>');
+```
+#### Moving elements
+Given:
+```javascript
+<div id="donald">
+    <div id="huey"></div>
+    <div id="louie"></div>
+    <div id="dewey"></div>
+</div>
+<div id="tom-riddle"></div>
+```
+and we just want to adopt this child as the last child like so
+```javascript
+<div id="donald">
+    <div id="huey"></div>
+    <div id="louie"></div>
+    <div id="dewey"></div>
+    <div id="tom-riddle"></div>
+</div>
+```
+jQuery
+```javascript
+$('#donald').append($('#tom-riddle'));
+```
+DOM API
+```javascript
+document.getElementById('donald').appendChild(document.getElementById('tom-riddle'));
+```
+Or we could make Tom the first child with
+jQuery
+```javascript
+$('#donald').prepend($('#tom-riddle'));
+```
+DOM API
+```javascript
+document.getElementById('donald').insertBefore(document.getElementById('tom-riddle'), document.getElementById('huey'));
+```
+this is a one liner, but it's getting kind of long. We will solve this problem later. Stay vigilant!
+#### Removing Elements
+jQuery `$('#booger').remove();`
+DOM API `document.getElementById('booger').parentNode.removeChild(document.getElementById('booger'))`
+#### Adding and Removing classes
+jQuery `$('#freshman').addClass('econ');`
+DOM API `document.getElementById('freshman').classList.add('econ')`
+or to remove a class:
+jQuery `$('#senior').removeClass('apathy');`
+this does not work in IE9. You'll have to have a shim, which is available on MDN. More on that later.
+DOM API `document.getElementById('senior').classList.remove('apathy')`
+#### Adding, Removing and updating attributes
