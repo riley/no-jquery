@@ -160,7 +160,8 @@ $('#diana').prepend('<div id="harry"></div>');
 
 DOM API
 ```javascript
-document.getElementById('diana').insertAdjacentHTML('afterbegin', '<div id="harry"></div>');```
+document.getElementById('diana').insertAdjacentHTML('afterbegin', '<div id="harry"></div>');
+```
 or create the element and put it at the end:
 ```javascript
 <div id="diana">
