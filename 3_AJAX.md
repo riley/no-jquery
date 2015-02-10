@@ -80,7 +80,7 @@ Using jQuery keeps you from having to manually set headers, which is just one mo
 
 #### JSON
 
-Say that we want to update something one the server, and we want to send it via JSON. That's a pretty normal use case, right?
+Say that we want to update something on the server, and we want to send it via JSON. That's a pretty normal use case, right?
 
 ```javascript
 $.ajax({
@@ -142,7 +142,7 @@ $.ajax({
 });
 ```
 
-This shows some of the problems I've run into while working with `$.ajax()`. While jQuery's apis have kept up with the growth of browser features, it does so by shoe-horning configuration into existing methods. I know that I want to upload a file asynchronously, but I have to dig through the docs to find a flag that's not immediately intuitive to get things to work. `contentType: false`? What? This is inserted so jQuery doesn't insert it's own headers, since the browser is required to set them so the multi-part request is sent properly by the browser.
+This shows some of the problems I've run into while working with `$.ajax()`. While jQuery's apis have kept up with the growth of browser features, it does so by shoehorning configuration into existing methods. I know that I want to upload a file asynchronously, but I have to dig through the docs to find a flag that's not immediately intuitive to get things to work. `contentType: false`? What? This is inserted so jQuery doesn't insert it's own headers, since the browser is required to set them so the multi-part request is sent properly by the browser.
 
 If we want to send the file as a single payload (really only good for small files).
 
@@ -184,8 +184,78 @@ The File API is quite powerful, and will make life a lot easier once we don't ha
 
 #### CORS
 
-Cross Origin Resource Sharing
+**C**ross **O**rigin **R**esource **S**haring is not going away, and there are lots of use cases -- loading external fonts, images that will be used in a canvas or as webgl textures. This is going to come up in even medium-sized projects, so it's something to be aware of.
+
+So, assuming the server you're requesting an asset from is set up to respond with the correct headers --
+
+jQuery
+
+```javascript
+$.ajax({
+    url: 'http://elsewhere.com',
+    contentType: 'text/plain',
+    data: 'When we look to the individuals of the same variety or sub-variety of our older cultivated plants and animals...',
+    beforeSend: function (xhr) {
+        // PRO TIP: cookies are not sent by default on cross-origin requests
+        xhr.widthCredentials = true;
+    }
+})
+```
+
+XMLHttpRequest
+```javascript
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://elsewhere.com');
+xhr.withCredentials = true;
+xhr.setRequestHeader('Content-Type', 'text/plain');
+xhr.send('When we look to the individuals of the same variety or sub-variety of our older cultivated plants and animals...');
+```
+
+This is the exact same functionality as jQuery, only we had to configure the jQuery object differently. There was no benefit to loading the library just for `$.ajax`.
+
+Notes:
+
+- To send cross-domain requests in IE9, you have to use Microsoft's [XDomainRequest](https://msdn.microsoft.com/en-us/library/ie/cc288060%28v=vs.85%29.aspx) so...sigh. It's really just XMLHttpRequest, only you have to read more docs.
+- This doesn't work with jQuery either. It depends on XMLHttpRequest internally, so you'll have to use a plugin to get it to work. Now your dependencies have dependencies. (Yo dawg, I herd you like dependencies).
+- OR you could wirte a little shim yourself:
+
+```javascript
+// check to see if we need the shim
+if (typeof new XMLHttpRequest().withCredentials === 'undefined') {
+    var xdr = new XDomainRequest();
+    xdr.open('POST', 'http://elsewhere.com');
+    xdr.send('blah');
+}
+```
+that was pretty easy.
+
 
 #### JSONP
 
-#### glossing over ugly bits
+I'm assuming that everyone knows what JSONP is. CORS is better, but in a pinch, use JSONP.
+
+jQuery
+```javascript
+$.ajax({
+    url: 'http://configured-jsonp-api/uniqueid',
+    jsonp: 'callback',
+    dataType: 'jsonp',
+    data: { name: 'your mom' },
+    success: function (data) {
+
+    }
+})
+```
+not too bad. just for code clarity, jQuery has some advantages here. You might want to write a helper function for the DOM API version.
+
+DOM API
+```javascript
+// global callbacks, gross.
+window.handleJSONP = function (data) {
+    // handle requested
+}
+
+var scriptElement = document.createElement('script');
+scriptElement.setAttribute('src', 'http://configured-jsonp-api/uniqueid?callback=handleJSONP&foo=' + Date.now());
+document.body.appendChild(scriptElement);
+```
