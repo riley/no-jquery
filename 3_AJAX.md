@@ -243,7 +243,7 @@ I'm assuming that everyone knows what JSONP is. CORS is better, but in a pinch, 
 ```javascript
 $.ajax({
     url: "http://configured-jsonp-api/uniqueid",
-    jsonp: 'callback',
+    jsonp: 'callback', // not strictly necessary
     dataType: 'jsonp',
     data: { name: 'your mom' },
     success: function (data) {
@@ -251,7 +251,7 @@ $.ajax({
     }
 })
 ```
-not too bad. just for code clarity, jQuery has some advantages here. You might want to write a helper function for the DOM API version.
+not too bad. just for code clarity, jQuery has some advantages here. You might want to write a helper function for the XMLHttpRequest version.
 
 **XMLHttpRequest**
 ```javascript
