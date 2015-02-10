@@ -22,15 +22,10 @@ There's a lot, so we'll try to cover the common usages of jQuery, and get into S
 * Element Selection
 * DOM Manipulation
 * AJAX
-* Eventing
 * Shims
-* Considerations / Gotchas
+* Utilities
+* Gotchas
 * SVGElement
 
-## Eventing
-Admittedly, this is a glaring weak point with vanilla javascript. There's not a good cross-browser way to send custom events, even in IE10.
-
-## Shims
-Almost everything works in IE9, including DOM methods and ES5 stuff.
 ## Considerations / Gotchas
 ## SVGElement
