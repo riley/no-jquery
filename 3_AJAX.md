@@ -146,6 +146,7 @@ This shows some of the problems I've run into while working with `$.ajax()`. Whi
 
 If we want to send the file as a single payload (really only good for small files).
 
+```javascript
 var file = $('#witty-banter/dialogue')[0].files[0]
 
 $.ajax({
@@ -167,9 +168,23 @@ var file = document.getElementById('witty-banter').files[0];
 var xhr = new XMLHttpRequest();
 
 formData.append('file', file);
+formData.open('POST', 'his-majestys-service');
+formData.send(formData);
 ```
+Oh snap. Now the file as the payload of the request:
+```javascript
+var file = document.getElementById('witty-banter').files[0];
+var xhr = new XMLHttpRequest();
+
+formData.open('POST', 'his-majestys-service');
+formData.setRequestHeader('Content-Type', file.type);
+formData.send(file);
+```
+The File API is quite powerful, and will make life a lot easier once we don't have to worry about IE9 anymore.
 
 #### CORS
+
+Cross Origin Resource Sharing
 
 #### JSONP
 
