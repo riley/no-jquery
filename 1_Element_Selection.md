@@ -2,31 +2,33 @@
 ## Element Selection
 
 #### By id
-jQuery
+**jQuery**
 `$('#some-element')`
-DOM API `document.getElementById('some-element')`
+
+**DOM API**
+`document.getElementById('some-element')`
 or `document.querySelector('#some-element')`
 
 #### By class
-jQuery `$('.some-element')`
+**jQuery** `$('.some-element')`
 
-DOM API `document.getElementsByClassName('some-element')`
+**DOM API** `document.getElementsByClassName('some-element')`
 or `document.querySelectorAll('.some-element')`
 
 #### By tag name
-jQuery `$('div')`
+**jQuery** `$('div')`
 
-DOM API `document.getElementsByTagName('div')` or  `document.querySelectorAll('div')`
+**DOM API** `document.getElementsByTagName('div')` or  `document.querySelectorAll('div')`
 
 #### By pseudo-class
-jQuery `$('#some-widget :first-child')` or
+**jQuery**`$('#some-widget :first-child')`
 
-DOM API `document.querySelectorAll('#some-widget :first-child')`
+**DOM API** `document.querySelectorAll('#some-widget :first-child')`
 
 #### Children
-jQuery `$('#parent-el').children()`
+**jQuery** `$('#parent-el').children()`
 
-DOM API
+**DOM API**
 ```javascript
 // this will select text nodes, which is almost never what you want
 document.getElementById('parent-el').childNodes
@@ -38,26 +40,25 @@ document.getElementById('parent-el').children
 ```
 
 #### Decendants
-jQuery `$('#parent a')` or
+**jQuery** `$('#parent a')`
 
-DOM API `document.querySelectorAll('#parent a')`
+**DOM API** `document.querySelectorAll('#parent a')`
 
 #### Excluding from a set
-jQuery
+**jQuery**
 ```javascript
 $('button').not('.disabled')
 $('button:not(.disabled)')
 ```
-DOM API
+**DOM API**
 ```javascript
 // what!
 document.querySelectorAll('button:not(.disabled)')
 ```
 #### Multiple selectors
-jQuery `$('div, a, li')`
+**jQuery** `$('div, a, li')`
 
-DOM API `document.querySelectorAll('div, a, li')`
+**DOM API** `document.querySelectorAll('div, a, li')`
 
 #### Things to keep in mind
 * `getElementsByTagName()` and `querySelectorAll()` return an HTMLCollection and a NodeList respectively, which are not the same thing
-* something else probably

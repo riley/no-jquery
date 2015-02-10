@@ -6,6 +6,7 @@ Browser support for AJAX has been around forever, but since it was designed by M
 
 Say that we want to get a record of twitter data. We'll need an api key as a parameter.
 
+**jQuery**
 ```javascript
 $.ajax({
     url: 'http://api.tumblr.com/search',
@@ -22,7 +23,7 @@ $.ajax({
 });
 ```
 
-XMLHttpRequest Object
+**XMLHttpRequest Object**
 
 ```javascript
 var xhr = new XMLHttpRequest();
@@ -43,6 +44,7 @@ this code is less lines, but it's a bit more difficult to read, since there's so
 
 Maybe we want to POST something, like you made a poem about your own cat, and you want to share it with the world.
 
+**jQuery**
 ```javascript
 $.ajax({
     url: 'http://api.tumblr.com/v2/blog/my-cat-blog/post',
@@ -60,7 +62,7 @@ $.ajax({
 });
 ```
 
-XMLHttpRequest Object
+**XMLHttpRequest Object**
 
 ```javascript
 var xhr = new XMLHttpRequest();
@@ -82,6 +84,7 @@ Using jQuery keeps you from having to manually set headers, which is just one mo
 
 Say that we want to update something on the server, and we want to send it via JSON. That's a pretty normal use case, right?
 
+**jQuery**
 ```javascript
 $.ajax({
     url: 'his-majestys-service/user/1611'
@@ -97,7 +100,7 @@ $.ajax({
 ```
 the default way of sending data in jQuery is for form data, which is why you need configuration to do much else. That's fine, but the internets are changing.
 
-DOM API
+**XMLHttpRequest**
 ```javascript
 var xhr = new XMLHttpRequest();
 xhr.open('PUT', 'his-majestys-service/user/1611');
@@ -123,7 +126,8 @@ Say that we have this markup, and the user has selected a file.
 <input type="file" id="input-file">
 ```
 
-jQuery
+**jQuery**
+
 We're going to upload the file as a multi-part encoded request.
 ```javascript
 // the 0th element of a jQuery array is of course the native DOM element
@@ -158,7 +162,7 @@ $.ajax({
 });
 ```
 
-XMLHttpRequest
+**XMLHttpRequest**
 
 multi-part encoded
 
@@ -170,8 +174,9 @@ var xhr = new XMLHttpRequest();
 formData.append('file', file);
 formData.open('POST', 'his-majestys-service');
 formData.send(formData);
+// oh snap.
 ```
-Oh snap. Now the file as the payload of the request:
+Now the file as the payload of the request:
 ```javascript
 var file = document.getElementById('witty-banter').files[0];
 var xhr = new XMLHttpRequest();
@@ -188,7 +193,7 @@ The File API is quite powerful, and will make life a lot easier once we don't ha
 
 So, assuming the server you're requesting an asset from is set up to respond with the correct headers --
 
-jQuery
+**jQuery**
 
 ```javascript
 $.ajax({
@@ -202,7 +207,7 @@ $.ajax({
 })
 ```
 
-XMLHttpRequest
+**XMLHttpRequest**
 ```javascript
 var xhr = new XMLHttpRequest();
 xhr.open('POST', 'http://elsewhere.com');
@@ -234,10 +239,10 @@ that was pretty easy.
 
 I'm assuming that everyone knows what JSONP is. CORS is better, but in a pinch, use JSONP.
 
-jQuery
+**jQuery**
 ```javascript
 $.ajax({
-    url: 'http://configured-jsonp-api/uniqueid',
+    url: "http://configured-jsonp-api/uniqueid",
     jsonp: 'callback',
     dataType: 'jsonp',
     data: { name: 'your mom' },
@@ -248,7 +253,7 @@ $.ajax({
 ```
 not too bad. just for code clarity, jQuery has some advantages here. You might want to write a helper function for the DOM API version.
 
-DOM API
+**XMLHttpRequest**
 ```javascript
 // global callbacks, gross.
 window.handleJSONP = function (data) {
