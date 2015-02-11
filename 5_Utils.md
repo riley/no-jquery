@@ -2,19 +2,32 @@
 
 There are plenty of convenience functions in jQuery and underscore cover stuff that's was/is missing from vanilla js, and we just stopped thinking about it years ago. Here are a few examples of replicating common tasks in vanilla js.
 
+#### Aliases for long function names
+
+Admittedly, typing document.querySelectorAll is not only arduous, but makes all your code bigger, and ultimately harder to read. Here's my setup:
+
+```javascript
+window.$ = document.querySelector.bind(document);
+window.$all = document.querySelectorAll.bind(document);
+window.byId = document.getElementById.bind(document);
+window.byClass = document.getElementsByClassName.bind(document);
+```
+
+I think everyone knows this, but in case you've forgotten -- Backbone has a nice alias of `$('selector').find('subselector')` which is `this.$('subselector')`. The aliases above search the _enitre_ DOM. Don't forget that each element can search beneath itself so `myFragment.querySelectorAll('.child-element')` will be much faster than querying the document every time.
+
 #### Type checking
 
-Flamewars aside, js is dynamically typed. Without arguing the worth of frameworks and compiled js supersets, here's how to check if a variable holds the different native js types.
+JavaScript is dynamically typed. I'm going to punt on arguing the worth of frameworks and compiled js supersets for now. Here's how to check if a variable holds the different native js types.
 
 **jQuery & _**
 
 ```javascript
 $.isFunction(foo);
-$.isPlainObject(bar);
+$.isPlainObject(bar); // false for []
 $.isArray(baz);
 
 _.isFunction(foo);
-_.isObject(bar);
+_.isObject(bar); // true for []
 _.isArray(baz);
 ```
 
@@ -65,7 +78,7 @@ isInViewport(elem); // returns a Boolean
 
 **jQuery**
 
-`$(document).height();` works, but only if the document is *taller* than the viewport. Otherwise it just returns the height of the viewport.
+`$(document).height();` works, with the caveat that if the document is *taller* than the viewport. Otherwise it just returns the height of the viewport.
 
 **vanilla**
 
@@ -277,17 +290,38 @@ stop trying to do math things with jQuery and underscore. A plague on both your 
 ```javascript
 // boom goes the dynamite
 Math.min.apply(Math, incomes);
-
 Math.max.apply(Math, incomes);
 ```
 
 #### Modifying function context
 
-This is another big one for me. Once you finally learned what `this` does in JavaScript, you find out it was a mess to control.
+This is another big one for me. Once you finally learned what `this` does in JavaScript, then you find out it was a mess to control.
+
+Say you have a widget that keeps track of it's own `el` (or `$el` for a jQuery widget). The widget has a method `buyNow` which takes users' money.
 
 **jQuery & _**
-
 ```javacript
-// ugh
+this.$el.find('.purchase').on('click', $.proxy(this.buyNow));
+```
+**vanilla**
+```javascript
+// finally. Function.prototype.bind is in IE9+
+this.el.querySelector('.purchase').addEventListener('click', this.buyNow.bind(this));
+```
 
+#### Trimming strings
+
+For a long time I assumed that nothing would work in ie8 and 9, so I automatically used jQuery for everything. Luckily, this isn't true. I thought the same thing about trimming strings:
+
+**jQuery**
+
+```javascript
+var firstName = $.trim($('input[name="first-name"]').val());
+```
+
+**vanilla**
+
+the `trim` method now exists on `String.prototype`
+```javascript
+var firstName = document.querySelector('input[name="first-name"]').value.trim();
 ```
