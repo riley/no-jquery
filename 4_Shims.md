@@ -21,11 +21,11 @@ document.querySelectorAll('.some-class').forEach(function (node) {
 // nice
 ```
 
-#### Element.classList
+#### Element.classList + SVGElement.classList
 
 You'll have to shim classList, as it does not work out of the box in IE9. The [classList shim](https://developer.mozilla.org/en-US/docs/Web/API/Element.classList) can be found on MDN.
 
-Another confusing thing I discovered recently is that while `classList` is supported in IE10 on `Element`s, it is notably **not** supported for `SVGElement`s. This is irritating if you're trying to save yourself some code. Here is my modified MDN shim which extends `classList` functionality to svg.
+Another confusing thing I discovered recently is that while `classList` is supported in IE10 on `Element`s, it is notably **not** supported for `SVGElement`s. This is irritating if you're trying to save yourself some typing. Here is my modified MDN shim which extends `classList` functionality to svg.
 
 ```javascript
 /*
