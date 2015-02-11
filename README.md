@@ -19,7 +19,7 @@ Boo. You're a programmer, you can type fast. Besides, you can alias the pertinen
 
 ### It keeps programming on the front end fresh.
 
-It's always fun to learn, and you'll think of crazier ways to do things if you know what to look for -- you won't have to dig for some jQuery plugin if you can easily write this stuff yourself.
+It's always fun to learn, and you'll think of crazier ways to do things if you know what to look for -- you won't have to dig for some jQuery plugin if you can easily write this stuff yourself. You might actually _save_ time since you don't have to find a plugin if you know how to produce the functionality quickly in vanilla js.
 
 ### What we're going to cover
 
