@@ -25,7 +25,7 @@ determining a function makes sense:
 typeof foo === 'function'
 ```
 
-determining an Object is where most people get annoyed and just go back to jQuery. `null` and `[]` are all Objects.
+determining an Object is where most people get annoyed and just go back to jQuery. `null` and `[]` are Objects. duh.
 
 ```javascript
 bar != null && Object.prototype.toString.call(bar) === '[object Object]'
@@ -36,6 +36,50 @@ Checking for an `Array` isn't too hard either.
 
 ```javascript
 Array.isArray(baz);
+```
+
+#### is an element in the viewport?
+
+**jQuery**
+
+haha jerk! you have to find a plugin.
+
+**vanilla**
+
+```javascript
+var isInViewport = function ( elem ) {
+    var distance = elem.getBoundingClientRect();
+    return (
+        distance.top >= 0 &&
+        distance.left >= 0 &&
+        distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
+
+var elem = document.querySelector('#some-element');
+isInViewport(elem); // returns a Boolean
+```
+
+#### height of the document
+
+**jQuery**
+
+`$(document).height();` works, but only if the document is *taller* than the viewport. Otherwise it just returns the height of the viewport.
+
+**vanilla**
+
+```javascript
+var getDocumentHeight = function () {
+    return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight
+    );
+};
 ```
 
 #### Mixing objects together
@@ -183,9 +227,51 @@ infinityGems.forEach(function (val, index) {
 
 It's worth noting that almost all of the array functions that underscore.js popularized are in IE9 natively. This is a big deal. I can't tell you how great it was to finally unshackle myself from IE8 and keeping track of all the things I *couldn't* do. We can complain about the lack of support for all sorts of CSS3 things another day, but IE9 is solid on ES5 (strict mode the obvious exception).
 
-#### Getting single & multiple objects in an array
+#### Finding single & multiple objects in an array
 
 Given:
 ```javascript
-var
+var evilExes = ['Matthew Patel', 'Lucas Lee', 'Todd Ingram', 'Roxy Richter', 'Kyle Katayanagi', 'Ken Katayanagi', 'Gideon Graves'];
+```
+
+**jQuery**
+
+Back in the day Internet Explorer didn't support `indexOf` on arrays, but confusingly, it did on strings. This was an incredible oversight, akin to God not giving us a third arm or x-ray vision. Therefore:
+
+```javascript
+// where -1 means the item is not in the array
+var finalBossIndex = $.inArray('Gideon Graves', evilExes);
+```
+
+or if we want to find all the objects in the array that satisfy a condition:
+```javascript
+var matchingElements = $.grep(evilExes, function (value) {
+    return someCondition === true;
+});
+```
+
+**vanilla**
+IE9+ rejoice!
+```javascript
+var evilExes.indexOf('Gideon Graves');
+```
+
+and awesomely
+```javascript
+evilExes.filter(function (element) {
+   return someCondition === true;
+});
+```
+
+this is better than `$.grep` in my opinion since it's part of the array already
+
+#### Modifying function context
+
+This is another big one for me. Once you finally learned what `this` does in JavaScript, you find out it was a mess to control.
+
+**jQuery & _**
+
+```javacript
+// ugh
+
 ```
