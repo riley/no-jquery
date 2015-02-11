@@ -6,12 +6,16 @@ There are plenty of convenience functions in jQuery and underscore cover stuff t
 
 Flamewars aside, js is dynamically typed. Without arguing the worth of frameworks and compiled js supersets, here's how to check if a variable holds the different native js types.
 
-**jQuery**
+**jQuery & _**
 
 ```javascript
 $.isFunction(foo);
 $.isPlainObject(bar);
 $.isArray(baz);
+
+_.isFunction(foo);
+_.isObject(bar);
+_.isArray(baz);
 ```
 
 **vanilla**
@@ -55,7 +59,7 @@ var two = {
 };
 ```
 
-jQuery
+**jQuery & _**
 
 ```javascript
 // first argument is the 'deep copy' flag
@@ -64,10 +68,15 @@ $.extend(true, one, two);
 
 // copies properties from one and two onto a new object
 var thirdParty = $.extend(true, {}, one, two);
+
+// underscore
+var thirdParty = _.extend({}, one, two);
+
 ```
 
 Here's an fairly simple extend function:
 
+**vanilla**
 ```javascript
 // always deep copy, because why not?
 var extend = function ( objects ) {
@@ -91,4 +100,92 @@ var extend = function ( objects ) {
     }
     return extended;
 };
+```
+
+#### Iterating over objects
+
+This is one of those tasks that's surprisingly tricky (read: annoying) and makes you learn more than you cared to about how JavaScript works deeper down.
+
+Given an object:
+```javascript
+var comedyRelief = {
+    first: 'Henry',
+    last: 'Jones'
+};
+```
+and then we create another object which inherits the properties of `protagonist`
+```javascript
+var protagonist = Object.create(comedyRelief);
+protagonist.suffix = 'Jr';
+protagonist.nickname = 'Indiana';
+```
+
+`protagonist` has 3 properties, only one of which belong to itself. Almost all of the time, if you iterate over the properties you want the _only_ the properties that belong to itself.
+
+**jQuery & _**
+```javascript
+$.each(protagonist, function (key, value) {
+    // drive plot
+});
+
+// or underscore
+_.each(protagonist, function (value, key) {
+    // notice arguments are reversed.
+});
+```
+well, that was nice. jQuery assumes we don't want to go up the prototype chain.
+
+**vanilla**
+```javascript
+for (var key in protagonist) {
+    // drive plot
+    if (protagonist.hasOwnProperty(key)) {
+        // exposition
+    }
+}
+```
+we have to make sure we only check the `protagonist` for it's own properties with `hasOwnProperties`, another long JavaScript function name. No one accused js of being terse.
+
+```javascript
+// Ah ha! you were expecting the code above! Didn't see this one coming!
+Object.keys(protagonist).forEach(function (key) {
+    // drive plot
+});
+```
+
+#### Iterating over arrays
+Say we have an array:
+```javascript
+var infinityGems = ['space', 'mind', 'soul', 'reality', 'time', 'power'];
+```
+
+and you were way ahead of the curve and you liked to chain functions together in jQuery
+
+**jQuery & _**
+```javascript
+$.each(infinityGems, function (index, value) {
+    // control some aspect of the universe
+});
+
+// reversed arguments here too
+_.each(infinityGems, function (value, index) {
+    // expose your tragic flaw
+});
+```
+
+You could write a for loop, but it adds mental overhead to you and future you. Do this easily with vanilla js. I would argue that this is **better** than `_` since you dont have to use the silly `_.chain` setup. It Just Works™
+
+```javascript
+infinityGems.forEach(function (val, index) {
+    // better call Adam Warlock (again)
+});
+```
+
+It's worth noting that almost all of the array functions that underscore.js popularized are in IE9 natively. This is a big deal. I can't tell you how great it was to finally unshackle myself from IE8 and keeping track of all the things I *couldn't* do. We can complain about the lack of support for all sorts of CSS3 things another day, but IE9 is solid on ES5 (strict mode the obvious exception).
+
+#### Getting single & multiple objects in an array
+
+Given:
+```javascript
+var
 ```
