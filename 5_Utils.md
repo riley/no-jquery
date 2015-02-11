@@ -265,6 +265,22 @@ evilExes.filter(function (element) {
 
 this is better than `$.grep` in my opinion since it's part of the array already
 
+#### Min and Max values in an array
+
+Given an array `incomes` find the minimum and maximum values
+
+**jQuery & _**
+
+stop trying to do math things with jQuery and underscore. A plague on both your houses!
+
+**vanilla**
+```javascript
+// boom goes the dynamite
+Math.min.apply(Math, incomes);
+
+Math.max.apply(Math, incomes);
+```
+
 #### Modifying function context
 
 This is another big one for me. Once you finally learned what `this` does in JavaScript, you find out it was a mess to control.
