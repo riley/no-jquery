@@ -184,6 +184,10 @@ $('#purchase').attr('disabled', 'disabled');
 **DOM API**
 ```javascript
 document.getElementById('purchase').setAttribute('disabled', 'disabled');
+
+// and for svg
+document.getElementById('purchase').setAttributeNS("http://www.w3.org/1999/xlink", 'href', 'http://geocities.com');
+// God, why?
 ```
 this code will add and update attributes
 #### Removing attributes
