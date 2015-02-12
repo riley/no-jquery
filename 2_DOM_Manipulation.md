@@ -162,6 +162,19 @@ this does not work in IE9. You'll have to have a shim, which is available on MDN
 ```javascript
 document.getElementById('senior').classList.remove('apathy')
 ```
+
+or even to toggle a class:
+
+**jQuery**
+```javascript
+$('#sophomore').toggleClass('feels');
+```
+
+**DOM API**
+```javascript
+document.getElementById('sophomore').classList.toggle('feels');
+```
+
 #### Adding, Removing and updating attributes
 **jQuery**
 ```javascript
