@@ -25,6 +25,7 @@ It's always fun to learn, and you'll think of crazier ways to do things if you k
 
 There's a lot, so we'll try to cover the common usages of jQuery, and get into SVG functions (stare into the abyss) if we have time at the end. Unless otherwise noted, examples work in IE9+.
 
+* Easy wins
 * Element Selection
 * DOM Manipulation
 * AJAX
