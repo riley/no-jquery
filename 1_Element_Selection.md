@@ -3,27 +3,53 @@
 
 #### By id
 **jQuery**
-`$('#some-element')`
+```javascript
+$('#some-element')
+```
 
 **DOM API**
-`document.getElementById('some-element')`
-or `document.querySelector('#some-element')`
+```javascript
+document.getElementById('some-element')
+// or
+document.querySelector('#some-element')
+```
 
 #### By class
-**jQuery** `$('.some-element')`
+**jQuery**
+```javascript
+$('.some-element')
+```
 
-**DOM API** `document.getElementsByClassName('some-element')`
-or `document.querySelectorAll('.some-element')`
+**DOM API**
+```javascript
+document.getElementsByClassName('some-element')
+//or
+document.querySelectorAll('.some-element')
+```
 
 #### By tag name
-**jQuery** `$('div')`
+**jQuery**
+```javascript
+$('div')
+```
 
-**DOM API** `document.getElementsByTagName('div')` or  `document.querySelectorAll('div')`
+**DOM API**
+```javascript
+document.getElementsByTagName('div')
+// or
+document.querySelectorAll('div')
+```
 
 #### By pseudo-class
-**jQuery**`$('#some-widget :first-child')`
+**jQuery**
+```javascript
+$('#some-widget :first-child')
+```
 
-**DOM API** `document.querySelectorAll('#some-widget :first-child')`
+**DOM API**
+```javascript
+document.querySelectorAll('#some-widget :first-child')
+```
 
 #### Parent
 
@@ -79,9 +105,15 @@ var interestingChannel = document.querySelector('.boring-channel').nextSibling;
 
 #### Is an element empty?
 
-jquery | DOM API
---- | ---
-`if ($('#outer').is(':empty'))` | `if(!document.getElementById('outer').hasChildNodes())`
+**jQuery**
+```javascript
+if ($('#outer').is(':empty'))
+```
+
+**DOM API**
+```javascript
+if(!document.getElementById('outer').hasChildNodes())
+```
 
 #### Excluding from a set
 **jQuery**
@@ -95,9 +127,15 @@ $('button:not(.disabled)')
 document.querySelectorAll('button:not(.disabled)')
 ```
 #### Multiple selectors
-**jQuery** `$('div, a, li')`
+**jQuery**
+```javascript
+$('div, a, li')
+```
 
-**DOM API** `document.querySelectorAll('div, a, li')`
+**DOM API**
+```javascript
+document.querySelectorAll('div, a, li')
+```
 
 #### Things to keep in mind
 * `getElementsByTagName()` and `querySelectorAll()` return an HTMLCollection and a NodeList respectively, which are not the same thing

@@ -5,9 +5,14 @@ jQuery isn't doing anything magical or inventing functionality (for the most par
 
 #### New Elements
 **jQuery**
-`$('<div></div>')`
+```javascript
+$('<div></div>')
+```
 
-**DOM API** `document.createElement('div')`
+**DOM API**
+```javascript
+document.createElement('div')
+```
 
 #### Inserting Elements Before & After
 let's say we start with a list, and we want to add an element in the middle
@@ -125,29 +130,59 @@ document.getElementById('donald').insertBefore(document.getElementById('tom-ridd
 ```
 this is a one liner, but it's getting kind of long. We will solve this problem later. Stay vigilant!
 #### Removing Elements
-**jQuery** `$('#booger').remove();`
+**jQuery**
+```javascript
+$('#booger').remove();
+```
 
-**DOM API** `document.getElementById('booger').parentNode.removeChild(document.getElementById('booger'))`
+**DOM API**
+```javascript
+document.getElementById('booger').parentNode.removeChild(document.getElementById('booger'))
+```
 #### Adding and Removing classes
-**jQuery** `$('#freshman').addClass('econ');`
+**jQuery**
+```javascript
+$('#freshman').addClass('econ');
+```
 
-**DOM API** `document.getElementById('freshman').classList.add('econ')`
+**DOM API**
+```javascript
+document.getElementById('freshman').classList.add('econ')
+```
 
 or to remove a class:
 
-**jQuery** `$('#senior').removeClass('apathy');`
+**jQuery**
+```javascript
+$('#senior').removeClass('apathy');
+```
 this does not work in IE9. You'll have to have a shim, which is available on MDN. More on that later.
 
-**DOM API** `document.getElementById('senior').classList.remove('apathy')`
+**DOM API**
+```javascript
+document.getElementById('senior').classList.remove('apathy')
+```
 #### Adding, Removing and updating attributes
-**jQuery** `$('#purchase').attr('disabled', 'disabled');`
+**jQuery**
+```javascript
+$('#purchase').attr('disabled', 'disabled');
+```
 
-**DOM API** `document.getElementById('purchase').setAttribute('disabled', 'disabled');`
+**DOM API**
+```javascript
+document.getElementById('purchase').setAttribute('disabled', 'disabled');
+```
 this code will add and update attributes
 #### Removing attributes
-**jQuery** `$('#purchase').removeAttr('disabled');`
+**jQuery**
+```javascript
+$('#purchase').removeAttr('disabled');
+```
 
-**DOM API** `document.getElementById('purchase').removeAttribute('disabled');`
+**DOM API**
+```javascript
+document.getElementById('purchase').removeAttribute('disabled');
+```
 #### Setting text content
 Say that we have an existing node that has some text:
 ```javascript
@@ -155,9 +190,15 @@ Say that we have an existing node that has some text:
 ```
 we can update it like so:
 
-**jQuery** `$('#username').text('Stephen Hawking');`
+**jQuery**
+```javascript
+$('#username').text('Stephen Hawking');
+```
 
-**DOM API** `document.getElementById('username').textContent = 'Stephen Hawking';`
+**DOM API**
+```javascript
+document.getElementById('username').textContent = 'Stephen Hawking';
+```
 as in `$.fn.text()`, any html is escaped by using `textContent`
 
 #### Adding and updating Element Styles
