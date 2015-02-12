@@ -25,8 +25,23 @@ or `document.querySelectorAll('.some-element')`
 
 **DOM API** `document.querySelectorAll('#some-widget :first-child')`
 
+#### Parent
+
+**jQuery**
+```javascript
+var darthVader = $('#luke-skywalker').parent();
+```
+
+**DOM API**
+```javascript
+var darthVader = document.getElementById('luke-skywalker').parentNode;
+```
+
 #### Children
-**jQuery** `$('#parent-el').children()`
+**jQuery**
+```javascript
+$('#parent-el').children()
+```
 
 **DOM API**
 ```javascript
@@ -40,9 +55,33 @@ document.getElementById('parent-el').children
 ```
 
 #### Decendants
-**jQuery** `$('#parent a')`
+**jQuery**
+```javascript
+$('#parent a')
+```
 
-**DOM API** `document.querySelectorAll('#parent a')`
+**DOM API**
+```javascript
+document.querySelectorAll('#parent a')
+```
+
+### Next
+
+**jQuery**
+```javascript
+var interestingChannel = $('.boring-channel').next();
+```
+
+**DOM API**
+```javascript
+var interestingChannel = document.querySelector('.boring-channel').nextSibling;
+```
+
+#### Is an element empty?
+
+jquery | DOM API
+--- | ---
+`if ($('#outer').is(':empty'))` | `if(!document.getElementById('outer').hasChildNodes())`
 
 #### Excluding from a set
 **jQuery**
