@@ -13,7 +13,7 @@ An incredible amount of work goes into jQuery to make it as light as possible, b
 
 if you're doing dom manipulations on lots of objects (i.e. data visualization), you'd be better off sticking to native methods over jQuery because of the [performance cost](http://jsperf.com/getelementbyid-vs-jquery-id/72).
 
-### I'm so lazy. $ and _ are so easy to type and getElementsByClassName makes me remember that time I tried to learn Java.
+### I'm so lazy. $ and _ are so easy to type and getElementsByClassName() makes me remember that time I tried to learn Java.
 
 Boo. You're a programmer, you can type fast. Besides, you can alias the pertinent functions if you're really lazy, or you're worried about file size.
 
