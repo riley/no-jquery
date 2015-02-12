@@ -138,7 +138,30 @@ $('#booger').remove();
 **DOM API**
 ```javascript
 document.getElementById('booger').parentNode.removeChild(document.getElementById('booger'))
+// you'll have to loop over elements to remove a set
+// I'll show a sweet shortcut for this later.
+Array.prototype.forEach.call(document.getElementsByClassName('wisdom-tooth'), function (tooth) {
+    tooth.parentNode.removeChild(tooth);
+});
 ```
+
+Maybe you want to empty out an element
+
+**jQuery**
+```javascript
+$('#booger').empty();
+```
+
+**DOM API**
+```javascript
+// this one's not super obvious, but jQuery is doing this under the hood anyways.
+var booger = document.getElementById('booger');
+while (booger.lastChild) {
+    booger.removeChild(booger.lastChild);
+}
+```
+this looks weird, but is [much, much](http://jsperf.com/jquery-html-vs-empty-vs-innerhtml/9) faster than `$.fn.empty()` or `node.innerHTML = ""`;
+
 #### Adding and Removing classes
 **jQuery**
 ```javascript

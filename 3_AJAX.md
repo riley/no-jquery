@@ -146,7 +146,7 @@ $.ajax({
 });
 ```
 
-This shows some of the problems I've run into while working with `$.ajax()`. While jQuery's apis have kept up with the growth of browser features, it does so by shoehorning configuration into existing methods. I know that I want to upload a file asynchronously, but I have to dig through the docs to find a flag that's not immediately intuitive to get things to work. `contentType: false`? What? This is inserted so jQuery doesn't insert it's own headers, since the browser is required to set them so the multi-part request is sent properly by the browser.
+This shows some of the problems I've run into while working with `$.ajax()`. While jQuery's apis have kept up with the growth of browser features, it does so by shoehorning configuration into existing methods. I know that I want to upload a file asynchronously, but I have to dig through the docs to find a flag that's not immediately intuitive to get things to work. `contentType: false`? What? This is inserted so jQuery doesn't insert its own headers, since the browser is required to set them so the multi-part request is sent properly by the browser.
 
 If we want to send the file as a single payload (really only good for small files).
 

@@ -201,7 +201,7 @@ for (var key in protagonist) {
     }
 }
 ```
-we have to make sure we only check the `protagonist` for it's own properties with `hasOwnProperties`, another long JavaScript function name. No one accused js of being terse.
+we have to make sure we only check the `protagonist` for its own properties with `hasOwnProperties`, another long JavaScript function name. No one accused js of being terse.
 
 ```javascript
 // Ah ha! you were expecting the code above! Didn't see this one coming!
@@ -297,7 +297,7 @@ Math.max.apply(Math, incomes);
 
 This is another big one for me. Once you finally learned what `this` does in JavaScript, then you find out it was a mess to control.
 
-Say you have a widget that keeps track of it's own `el` (or `$el` for a jQuery widget). The widget has a method `buyNow` which takes users' money.
+Say you have a widget that keeps track of its own `el` (or `$el` for a jQuery widget). The widget has a method `buyNow` which takes users' money.
 
 **jQuery & _**
 ```javacript
