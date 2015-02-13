@@ -1,11 +1,10 @@
-# JavaScript Thursdays Talk
 # No more jQuery
 
-notes for Riley's talk on 2.14.15
+this was originally used for a talk at my job, but I'm keeping it here as a brain dump and personal reference. It's all the resources I've gathered in my quest to write (mostly) vanilla javascript for work. Props to [You don't need jQuery](http://blog.garstasio.com/you-dont-need-jquery/) and many, many stackoverflow posts and of course [MDN](https://developer.mozilla.org/en-US/docs/Web/Reference/API)
 
 ### Why?
 
-It's easy to lean on jQuery here since the NYT5 includes it in every page. This isn't going to be the case for every site on which you work.
+It's easy to lean on jQuery at the Times since NYT5 includes it in every page. This isn't going to be the case for every site on which you work.
 
 jQuery patches over some ugly bits which largely aren't an issue anymore now that we've moved on from supporting IE8 in the industry. With the updates to js in IE9, you don't really need underscore.js either.
 
