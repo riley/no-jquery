@@ -202,7 +202,7 @@ $.ajax({
     data: 'When we look to the individuals of the same variety or sub-variety of our older cultivated plants and animals...',
     beforeSend: function (xhr) {
         // PRO TIP: cookies are not sent by default on cross-origin requests
-        xhr.widthCredentials = true;
+        xhr.withCredentials = true;
     }
 })
 ```
