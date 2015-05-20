@@ -103,6 +103,7 @@ the default way of sending data in jQuery is for form data, which is why you nee
 **XMLHttpRequest**
 ```javascript
 var xhr = new XMLHttpRequest();
+var postData = JSON.stringify({name: "Charles de Batz-Castelmore d'Artagnan"});
 xhr.open('PUT', 'his-majestys-service/user/1611');
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onload = function () {
@@ -110,9 +111,7 @@ xhr.onload = function () {
         var userInfo = JSON.parse(xhr.responseText);
     }
 };
-xhr.send(JSON.stringify({
-    name: "Charles de Batz-Castelmore d'Artagnan"
-}));
+xhr.send(postData);
 
 ```
 
