@@ -76,7 +76,7 @@ xhr.onload = function () {
         console.log('something blew up!', xhr.status);
     }
 }
-xhr.send(null);
+xhr.send(postData);
 ```
 Using jQuery keeps you from having to manually set headers, which is just one more point of failure and potential typos. If you're typing this over and over, maybe consider a utility function, but a whole library? Probably not.
 
