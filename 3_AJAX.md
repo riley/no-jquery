@@ -32,7 +32,7 @@ xhr.onload = function () {
     if (xhr.status === 200) {
         console.log(xhr.responseText);
     } else {
-        conosle.log('something blew up', xhr.status);
+        console.log('something blew up', xhr.status);
     }
 }
 xhr.send(null);
